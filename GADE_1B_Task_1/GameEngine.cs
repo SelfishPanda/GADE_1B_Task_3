@@ -370,7 +370,7 @@ namespace GADE_1B_Task_1
                                 Array.Resize(ref this.arrUnits, this.arrUnits.Length + 1); ;
                                 this.arrUnits[this.arrUnits.Length - 1] = building.CreateUnit();
                                 map.arrUnits = this.arrUnits;
-                                t2Resources -= 60;
+                                t2Resources -= 60 ;
 
                             }
                         }

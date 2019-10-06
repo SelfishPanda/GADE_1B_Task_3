@@ -12,23 +12,26 @@ namespace GADE_1B_Task_1
 
         int sumUnits;
         int sumBuildings;
-
+        
         //CLASS CONSTRUCTORS
         public Map(int _sumUnits, int _sumBuildings, int _mapX,int _mapY)
         {
             sumUnits = _sumUnits;
             sumBuildings = _sumBuildings;          
             char[,] ArrMap = new char[_mapX, _mapY];
+           
             arrMap = ArrMap;
         }
+       
+       
 
-        
-        
 
-    //CLASS METHODS
-    public void RandomBattlefield()
+        //CLASS METHODS
+        public void RandomBattlefield()
         {
-            int randomX, randomY;
+            
+
+        int randomX, randomY;
             int random;
             randomX = 1;
             randomY = 1;
