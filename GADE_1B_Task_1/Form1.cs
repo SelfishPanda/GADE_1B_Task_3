@@ -35,6 +35,7 @@ namespace GADE_1B_Task_1
             rtxtInfo.Text = gameEngine.OutputString;
             rtxtBuildingInfo.Text = gameEngine.buildingOutput;
             lblTimer.Text = Convert.ToString(timer);
+            Resources.Text = ("Team1 Resources : "+gameEngine.t1Resources+"\n"+"Team2 Resources : "+gameEngine.t2Resources);
            
         }
 
@@ -221,6 +222,11 @@ namespace GADE_1B_Task_1
             bsr.Close();
             lblMap.Text = gameEngine.map.MapDisplay();
             timer1.Start();
+        }
+
+        private void label3_Click(object sender, EventArgs e)
+        {
+
         }
     }
 }

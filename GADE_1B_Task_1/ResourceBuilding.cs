@@ -43,5 +43,6 @@ class ResourceBuilding : Building
     {
         resourcePool -= resourcesGeneratedPerRound;
         resourcesGenerated += resourcesGeneratedPerRound;
+        
     }
 }

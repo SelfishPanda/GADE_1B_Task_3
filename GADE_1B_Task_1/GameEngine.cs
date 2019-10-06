@@ -8,20 +8,22 @@ namespace GADE_1B_Task_1
 {
     class GameEngine
     {
-        public int gameRounds;
+        public int gameRounds, t1Resources,t2Resources;
         unit[] arrUnits;
         public Map map ;
         public string OutputString, buildingOutput;
         Form1 form = new Form1();
         bool buildingcloser = false;
 
+
         public GameEngine()
         {
             map = new Map(2,4,30,30);
             map.RandomBattlefield();
             this.arrUnits = map.arrUnits;
-                gameRounds = 0;
-            
+            gameRounds = 0;
+            t1Resources = 0;
+            t2Resources = 0;
            
         }
 
@@ -329,6 +331,14 @@ namespace GADE_1B_Task_1
                     else
                     {
                         building.ResourceManagement();
+                        if (building.team== "Team1")
+                        {
+                            t1Resources += building.resourcesGeneratedPerRound;
+                        }
+                        else
+                        {
+                            t2Resources += building.resourcesGeneratedPerRound;
+                        }
                     }
                    
                 }
@@ -340,14 +350,30 @@ namespace GADE_1B_Task_1
                     { }
                     else
                     {
-                        if ((gameRounds % building.productionSpeed) == 0)
+                        if (building.team == "Team1")
                         {
+                            if (t1Resources >= 60)
+                            {
 
-                            Array.Resize(ref this.arrUnits, this.arrUnits.Length + 1); ;
-                            this.arrUnits[this.arrUnits.Length-1] = building.CreateUnit();
-                            map.arrUnits = this.arrUnits;
+                                Array.Resize(ref this.arrUnits, this.arrUnits.Length + 1); ;
+                                this.arrUnits[this.arrUnits.Length - 1] = building.CreateUnit();
+                                map.arrUnits = this.arrUnits;
+                                t1Resources -= 60;
+
+                            }
+                        }   
+                        else
+                        {
+                            if (t2Resources >= 60)
+                            {
+
+                                Array.Resize(ref this.arrUnits, this.arrUnits.Length + 1); ;
+                                this.arrUnits[this.arrUnits.Length - 1] = building.CreateUnit();
+                                map.arrUnits = this.arrUnits;
+                                t2Resources -= 60;
+
+                            }
                         }
-
                     }
                     
 

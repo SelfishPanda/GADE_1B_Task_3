@@ -40,6 +40,7 @@
             this.rtxtBuildingInfo = new System.Windows.Forms.RichTextBox();
             this.label1 = new System.Windows.Forms.Label();
             this.label2 = new System.Windows.Forms.Label();
+            this.Resources = new System.Windows.Forms.Label();
             this.SuspendLayout();
             // 
             // btnStart
@@ -140,11 +141,22 @@
             this.label2.TabIndex = 9;
             this.label2.Text = "Buildings";
             // 
+            // Resources
+            // 
+            this.Resources.AutoSize = true;
+            this.Resources.Location = new System.Drawing.Point(753, 443);
+            this.Resources.Name = "Resources";
+            this.Resources.Size = new System.Drawing.Size(76, 17);
+            this.Resources.TabIndex = 10;
+            this.Resources.Text = "Resources";
+            this.Resources.Click += new System.EventHandler(this.label3_Click);
+            // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(1178, 598);
+            this.Controls.Add(this.Resources);
             this.Controls.Add(this.label2);
             this.Controls.Add(this.label1);
             this.Controls.Add(this.rtxtBuildingInfo);
@@ -176,6 +188,7 @@
         private System.Windows.Forms.RichTextBox rtxtBuildingInfo;
         private System.Windows.Forms.Label label1;
         private System.Windows.Forms.Label label2;
+        private System.Windows.Forms.Label Resources;
     }
 }
 
