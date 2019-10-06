@@ -5,6 +5,11 @@ VisualStudioVersion = 15.0.28307.421
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "GADE_1B_Task_1", "GADE_1B_Task_1\GADE_1B_Task_1.csproj", "{60D4FE3F-3193-46B3-8753-08EA653F1D1E}"
 EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution Items", "{82C287D4-584B-4CD5-BEC4-23EF606DE611}"
+	ProjectSection(SolutionItems) = preProject
+		Wizard.cs = Wizard.cs
+	EndProjectSection
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
