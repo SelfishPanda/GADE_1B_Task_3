@@ -137,31 +137,31 @@ namespace GADE_1B_Task_1
                 }
                 else if (random == 2)
                 {
-                    ResourceBuilding building = new ResourceBuilding(randomX, randomY, 200, "Team2", 'R', "Tiberuim", 0, 5, 2000);
+                    ResourceBuilding building = new ResourceBuilding(randomX, randomY, 200, "Team2", 'r', "Tiberuim", 0, 5, 2000);
                     arrMap[building.xPos, building.yPos] = building.symbol;
                     arrBuildings[k] = building;
                 }
                 else if (random == 3)
                 {
-                    FactoryBuilding building = new FactoryBuilding(randomX, randomY, 200, "Team1", 'F', "Melee Unit", 10, spawnYPos);
+                    FactoryBuilding building = new FactoryBuilding(randomX, randomY, 200, "Team1", 'F', "Melee Unit", 20, spawnYPos);
                     arrMap[building.xPos, building.yPos] = building.symbol;
                     arrBuildings[k] = building;
                 }
                 else if (random == 4)
                 {
-                    FactoryBuilding building = new FactoryBuilding(randomX, randomY, 200, "Team1", 'F', "Ranged Unit", 10, spawnYPos);
+                    FactoryBuilding building = new FactoryBuilding(randomX, randomY, 200, "Team1", 'F', "Ranged Unit", 20, spawnYPos);
                     arrMap[building.xPos, building.yPos] = building.symbol;
                     arrBuildings[k] = building;
                 }
                 else if (random == 5)
                 {
-                    FactoryBuilding building = new FactoryBuilding(randomX, randomY, 200, "Team2", 'F', "Melee Unit", 10, spawnYPos);
+                    FactoryBuilding building = new FactoryBuilding(randomX, randomY, 200, "Team2", 'f', "Melee Unit", 20, spawnYPos);
                     arrMap[building.xPos, building.yPos] = building.symbol;
                     arrBuildings[k] = building;
                 }
                 else
                 {
-                    FactoryBuilding building = new FactoryBuilding(randomX, randomY, 200, "Team2", 'F', "Ranged  Unit", 10, spawnYPos);
+                    FactoryBuilding building = new FactoryBuilding(randomX, randomY, 200, "Team2", 'f', "Ranged  Unit", 20, spawnYPos);
                     arrMap[building.xPos, building.yPos] = building.symbol;
                     arrBuildings[k] = building;
                 }

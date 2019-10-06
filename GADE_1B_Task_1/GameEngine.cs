@@ -211,6 +211,7 @@ namespace GADE_1B_Task_1
 
                             Array.Resize(ref this.arrUnits, this.arrUnits.Length + 1); ;
                             this.arrUnits[this.arrUnits.Length-1] = building.CreateUnit();
+                            map.arrUnits = this.arrUnits;
                         }
 
                     }
@@ -220,9 +221,9 @@ namespace GADE_1B_Task_1
                 buildingOutput += "\n" + map.arrBuildings[i].toString();
                 buildingOutput += "\n";
             }
-            
+            map.arrUnits = this.arrUnits;
 
-            
+
         }
 
     }

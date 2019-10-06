@@ -52,18 +52,35 @@ namespace GADE_1B_Task_1
 
         public unit CreateUnit()
         {
-            unitsProduced += 1;
-            if (unitToProduce == "Ranged Unit")
+            if (this.team == "Team1")
             {
-                RangedUnit unit = new RangedUnit("Archer", this.xPos, spawnYPos, 80, 1, 3, 1, this.team, 'O', false);
-                return unit;
+
+
+                unitsProduced += 1;
+                if (unitToProduce == "Ranged Unit")
+                {
+                    RangedUnit unit = new RangedUnit("Archer", this.xPos, spawnYPos, 80, 1, 3, 1, this.team, 'O', false);
+                    return unit;
+                }
+                else
+                {
+                    MeleeUnit unit = new MeleeUnit("Knight", this.xPos, spawnYPos, 100, 1, 5, 1, this.team, 'X', false);
+                    return unit;
+                }
             }
             else
             {
-                MeleeUnit unit = new MeleeUnit("Knight", this.xPos, spawnYPos, 100, 1, 5, 1, this.team, 'X', false);
-                return unit; 
+                if (unitToProduce == "Ranged Unit")
+                {
+                    RangedUnit unit = new RangedUnit("Archer", this.xPos, spawnYPos, 80, 1, 3, 1, this.team, 'o', false);
+                    return unit;
+                }
+                else
+                {
+                    MeleeUnit unit = new MeleeUnit("Knight", this.xPos, spawnYPos, 100, 1, 5, 1, this.team, 'x', false);
+                    return unit;
+                }
             }
-
            
         }
         
