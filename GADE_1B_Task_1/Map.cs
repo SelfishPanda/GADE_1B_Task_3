@@ -58,7 +58,7 @@ namespace GADE_1B_Task_1
                 randomY = rnd.Next(0, arrMap.GetLength(1));
 
                 
-                random = rnd.Next(1, 5);
+                random = rnd.Next(1, 6);
 
                 while (arrMap[randomX, randomY] == 'x' || arrMap[randomX, randomY] == 'X' || arrMap[randomX, randomY] == 'o' || arrMap[randomX, randomY] == 'O')
                 {
@@ -89,12 +89,22 @@ namespace GADE_1B_Task_1
                     arrMap[unit.xPos, unit.yPos] = unit.symbol;
                     arrUnits[i] = unit;
                 }
-                else
+                else if (random == 4)                               
                 {
                     RangedUnit unit = new RangedUnit("Archer", randomX, randomY, 80, 1, 3, 3, "Team2", 'o', false);
                     arrMap[unit.xPos, unit.yPos] = unit.symbol;
                     arrUnits[i] = unit;
                 }
+                else
+                {
+                    Wizard unit = new Wizard("Wizard", randomX, randomY, 200, 1, 9, 3, "neutral", 'o', false);
+                    arrMap[unit.xPos, unit.yPos] = unit.symbol;
+                    arrUnits[i] = unit;
+                }
+                
+	
+                        
+                       
             }
 
             for (int k = 0; k < sumBuildings; k++)
