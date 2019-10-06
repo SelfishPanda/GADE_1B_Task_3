@@ -170,7 +170,7 @@ namespace GADE_1B_Task_1
 
         //
         public virtual  bool Death()
-        {
+        {//checks to see if this unit is dead
             bool dead;
 
             if (this.HP <= 0)

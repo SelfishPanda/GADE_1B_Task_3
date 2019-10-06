@@ -29,9 +29,9 @@ namespace GADE_1B_Task_1
         //CLASS METHODS
         public void RandomBattlefield()
         {
-            
+           // method creates a random battlefield and initializes all of the buildings and units on the map 
 
-        int randomX, randomY;
+            int randomX, randomY;
             int random;
             randomX = 1;
             randomY = 1;
@@ -39,7 +39,7 @@ namespace GADE_1B_Task_1
             arrUnits = new unit[sumUnits];
             arrBuildings = new Building[sumBuildings];
             Random rnd = new Random();
-
+            //populate map
             for (int i = 0; i < arrMap.GetLength(0); i++)
             {
                 for (int k = 0; k < arrMap.GetLength(1); k++)
@@ -49,7 +49,7 @@ namespace GADE_1B_Task_1
                 }
 
             }
-
+            //makes units
             for (int i = 0; i < sumUnits; i++)
             {
 
@@ -58,16 +58,16 @@ namespace GADE_1B_Task_1
                 randomY = rnd.Next(0, arrMap.GetLength(1));
 
                 
-                random = rnd.Next(1, 6);
+                random = rnd.Next(1, 8);
 
                 while (arrMap[randomX, randomY] == 'x' || arrMap[randomX, randomY] == 'X' || arrMap[randomX, randomY] == 'o' || arrMap[randomX, randomY] == 'O')
-                {
+                {//checks that they dont spawn ontop of eachother
 
                     randomX = rnd.Next(0, arrMap.GetLength(0));
                     randomY = rnd.Next(0, arrMap.GetLength(1));
 
                 }
-
+                //randomises the unit that will spawn
                 if (random == 1)
                 {
 
@@ -95,18 +95,29 @@ namespace GADE_1B_Task_1
                     arrMap[unit.xPos, unit.yPos] = unit.symbol;
                     arrUnits[i] = unit;
                 }
-                else
+                else if (random == 5)
                 {
-                    Wizard unit = new Wizard("Wizard", randomX, randomY, 150, 1, 7, 2, "neutral", 'W', false);
+                    Wizard unit = new Wizard("Wizard", randomX, randomY, 100, 1, 5, 2, "Team1", 'W', false);
                     arrMap[unit.xPos, unit.yPos] = unit.symbol;
                     arrUnits[i] = unit;
                 }
-                
+                else if (random == 6)
+                {
+                    Wizard unit = new Wizard("Wizard", randomX, randomY, 100, 1, 5, 2, "Team2", 'w', false);
+                    arrMap[unit.xPos, unit.yPos] = unit.symbol;
+                    arrUnits[i] = unit;
+                }
+                else
+                {
+                    Wizard unit = new Wizard("Wizard", randomX, randomY, 150, 1, 7, 2, "neutral", 'M', false);
+                    arrMap[unit.xPos, unit.yPos] = unit.symbol;
+                    arrUnits[i] = unit;
+                }
 	
                         
                        
             }
-
+            //spawns all the buildings
             for (int k = 0; k < sumBuildings; k++)
             {
 
@@ -114,13 +125,14 @@ namespace GADE_1B_Task_1
                 randomY = rnd.Next(0, arrMap.GetLength(1));
 
                 while (arrMap[randomX, randomY] == 'x' || arrMap[randomX, randomY] == 'X' || arrMap[randomX, randomY] == 'o' || arrMap[randomX, randomY] == 'O')
-                {
+                {//checks that they dont spawn ontop of eachother
+
 
                     randomX = rnd.Next(0, arrMap.GetLength(0));
                     randomY = rnd.Next(0, arrMap.GetLength(1));
 
                 }
-
+                //randomises building that will spawn
                 random = rnd.Next(1, 7);
 
                 int spawnYPos;
@@ -183,7 +195,7 @@ namespace GADE_1B_Task_1
         }
 
         public string MapDisplay()
-        {
+        {//Displays map in a string that the label can use
             string mapString;
             mapString = " ";
 
@@ -202,7 +214,7 @@ namespace GADE_1B_Task_1
             return mapString;
 
         }
-
+        //updates the map array when a unit has moved
         public void MapUpdate(unit unitMove, int xOld, int yOld)
         {
 

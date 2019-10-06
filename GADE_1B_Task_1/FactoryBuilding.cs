@@ -8,13 +8,13 @@ namespace GADE_1B_Task_1
 {
     class FactoryBuilding : Building
     {
-       
 
+        //CLASS VARIABLES
         public string unitToProduce { get;  }
         public int productionSpeed { get;}
         public int spawnYPos { get; }
         public int unitsProduced;
-
+        //CLASS CONSTRUCTORS
         public FactoryBuilding(int _xPos, int _yPos, int _HP, string _team, char _symbol, string _unitToProduce, int _productionSpeed, int _spawnYPos) : base(_xPos, _yPos, _HP, _team, _symbol)
         {
             unitToProduce = _unitToProduce;
@@ -25,7 +25,7 @@ namespace GADE_1B_Task_1
 
 
         public override bool Death()
-        {
+        {//checks to see if this unit is dead
             bool death;
             death = false;
 
@@ -39,7 +39,7 @@ namespace GADE_1B_Task_1
 
         }
         public override string toString()
-        {
+        {//Puts all the units stats into a string so it can be output to display them
             string output = "";
             output = "Factory Building (" + team + ")" + "\n" + "Health Points : " + this.HP + "\n" + "X-Position : " + this.xPos + "\n" + "Y-Position :" + this.yPos + "\n" + "Units Produced :" + this.unitsProduced + "\n" + "Units Being Produced :" + this.unitToProduce;
             return output;
@@ -47,7 +47,7 @@ namespace GADE_1B_Task_1
         }
 
         public unit CreateUnit()
-        {
+        {//creates random units if there is enough resources
             if (this.team == "Team1")
             {
 

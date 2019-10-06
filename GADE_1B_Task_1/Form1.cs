@@ -28,6 +28,7 @@ namespace GADE_1B_Task_1
 
         private void timer1_Tick(object sender, System.EventArgs e)
         {
+            // runs gamelogic every second and updates map and gui aswell
             int timer;
             gameEngine.GameLogic(gameEngine.map.arrUnits);
             lblMap.Text = gameEngine.map.MapDisplay();     
@@ -41,17 +42,20 @@ namespace GADE_1B_Task_1
 
         private void btnStart_Click(object sender, EventArgs e)
         {
+            //Starts the simulation
             timer1.Start();
            
         }
 
         private void btnPause_Click(object sender, EventArgs e)
         {
+            //Pauses the simulation
             timer1.Stop();
         }
 
         private void Form1_Load(object sender, EventArgs e)
         {
+            //On form load it initialises gameengine and generates a new map
             gameEngine = new GameEngine();
             load = false;
             gameEngine.map.RandomBattlefield();
@@ -61,6 +65,7 @@ namespace GADE_1B_Task_1
 
         private void btnSave_Click(object sender, EventArgs e)
         {
+            //Saves all of the game data in a text file
             string saveString;
 
            
@@ -114,6 +119,7 @@ namespace GADE_1B_Task_1
 
         private void btnLoad_Click(object sender, EventArgs e)
         {
+            //Loads saved simulation from textfile into program and initializes the simulation
             load = true;
             int count;
 
@@ -163,12 +169,19 @@ namespace GADE_1B_Task_1
                     gameEngine.map.arrUnits[i] = un;
                     gameEngine.map.arrMap[un.xPos, un.yPos] = un.symbol;
                 }
-                else
+                else if(uSymbol == 'o'|| uSymbol == 'O')
                 {
                     RangedUnit un = new RangedUnit(Name, x, y, HP, Speed, Attack, AttackRange, Team, uSymbol, IsAttacking);
                     gameEngine.map.arrUnits[i] = un;
                     gameEngine.map.arrMap[un.xPos, un.yPos] = un.symbol;
                 }
+                else
+                {
+                    Wizard un = new Wizard(Name, x, y, HP, Speed, Attack, AttackRange, Team, uSymbol, IsAttacking);
+                    gameEngine.map.arrUnits[i] = un;
+                    gameEngine.map.arrMap[un.xPos, un.yPos] = un.symbol;
+                }
+
             }
 
             ufs.Close();
@@ -223,7 +236,7 @@ namespace GADE_1B_Task_1
             lblMap.Text = gameEngine.map.MapDisplay();
             timer1.Start();
         }
-
+        //Oopsy woopsy seems like i double clicked it by accident
         private void label3_Click(object sender, EventArgs e)
         {
 

@@ -14,8 +14,8 @@ namespace GADE_1B_Task_1
 
         }
 
-        
-        
+
+        //Puts all the units stats into a string so it can be output to display them
         public override string ToString()
         { 
             string output = "";

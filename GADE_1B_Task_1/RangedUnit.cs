@@ -3,7 +3,7 @@ namespace GADE_1B_Task_1
 {
     class RangedUnit : unit
     {
-        //PROPERTIES
+        
 
 
 
@@ -16,7 +16,7 @@ namespace GADE_1B_Task_1
 
 
         public override string ToString()
-        {
+        {//Puts all the units stats into a string so it can be output to display them
             string output = "";
             output = "Ranged Unit ("+team+")" + "\n" + "Health Points : " + this.HP + "\n" + "X-Position : " + this.xPos + "\n" + "Y-Position :" + this.yPos;
             return output;

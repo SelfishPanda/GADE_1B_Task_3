@@ -8,14 +8,15 @@ namespace GADE_1B_Task_1
 {
     class GameEngine
     {
+        //CLASS VARIABLES
         public int gameRounds, t1Resources,t2Resources;
         unit[] arrUnits;
         public Map map ;
         public string OutputString, buildingOutput;
         Form1 form = new Form1();
-        
 
 
+        //CLASS CONSTRUCTORS
         public GameEngine()
         {
             map = new Map(5,8,30,30);
@@ -86,7 +87,7 @@ namespace GADE_1B_Task_1
         }
 
         public string Direction(unit Main, Building Enemy)
-        {
+        {//Overrides Direction so that it can be used for buildings aswell
             string ReturnVal;
             ReturnVal = " ";
 
@@ -145,7 +146,7 @@ namespace GADE_1B_Task_1
 
 
 
-        //
+        //all the logic that makes the units do their actions and make the game function
         public void GameLogic(unit[] arrUnits)
         {
             gameRounds++;
@@ -166,8 +167,8 @@ namespace GADE_1B_Task_1
 
                 unit closestunit = this.arrUnits[i].ClosestUnit(arrUnits);
                 if (arrUnits[i].unitName == "Wizard")
-                {
-                    if (death == true)
+                {//wizard check
+                    if (death == true)//death check
                     { arrUnits[i].HP = 0; }
                     else
                     {
@@ -175,13 +176,13 @@ namespace GADE_1B_Task_1
 
 
                         if (this.arrUnits[i] == closestunit)
-                        { }
+                        { closestunit = arrUnits[i].ClosestUnit(arrUnits); }//makes sure closest unit worked correctly
                         else
                         {
 
-                            this.arrUnits[i].AttackRange(closestunit);
-                            if (this.arrUnits[i].HP <= (this.arrUnits[i].maxHP * 0.25))
-                            {
+                            this.arrUnits[i].AttackRange(closestunit);//checks if target is in range
+                            if (this.arrUnits[i].HP <= (this.arrUnits[i].maxHP * 0.50))//checks if units health is low enough to run away
+                            {//makes unit run away in random direction
                                 string randomDirection;
                                 int random;
 
@@ -206,19 +207,19 @@ namespace GADE_1B_Task_1
 
                                 this.arrUnits[i].Move(randomDirection);
 
-                                this.arrUnits[i].HP += 2;
+                                this.arrUnits[i].HP += 4;
                             }
                             else
-                            {
+                            {//if hp above runaway amount
 
 
                                 if (this.arrUnits[i].isAttacking == true)
-                                {
+                                {//makes unit attack
                                     Wizard unit = (Wizard)arrUnits[i];
                                     unit.WizardAOE(this.arrUnits);
                                 }
                                 else
-                                {
+                                {//makes unit move closer to target
                                     int oldX, oldY;
                                     oldX = this.arrUnits[i].xPos;
                                     oldY = this.arrUnits[i].yPos;
@@ -230,7 +231,7 @@ namespace GADE_1B_Task_1
                             }
                         }
 
-                    }
+                    }//^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
                 }
                 else
                 {
@@ -246,7 +247,7 @@ namespace GADE_1B_Task_1
                         Building closestBuilding = this.arrUnits[i].ClosestUnit(map.arrBuildings);
 
 
-
+                        //sees if the building or unit is closer so that it knows witch one to attack
                         int xDistb = Math.Abs(this.arrUnits[i].xPos - closestBuilding.xPos);
                         int yDistb = Math.Abs(this.arrUnits[i].yPos - closestBuilding.yPos);
                         int totalDistb = xDistb + yDistb;
@@ -261,7 +262,7 @@ namespace GADE_1B_Task_1
 
 
                         if (totalDistb < totalDistu && closestBuilding.hP > 0)
-                        {
+                        {//if building is closer
 
 
                             this.arrUnits[i].AttackRange(closestBuilding);
@@ -314,11 +315,11 @@ namespace GADE_1B_Task_1
                             }
                         }
                         else
-                        {
+                        {//if unit is closer
 
 
                             if (this.arrUnits[i] == closestunit)
-                            { }
+                            { closestunit = arrUnits[i].ClosestUnit(arrUnits); }
                             else
                             {
 
@@ -376,7 +377,7 @@ namespace GADE_1B_Task_1
                 }
             
                     
-                
+                //compiles a string to output all the tostring stats of the units
                     OutputString += "\n" + this.arrUnits[i].ToString();
                 
                 
@@ -388,23 +389,23 @@ namespace GADE_1B_Task_1
             buildingOutput = " ";
             
             for (int i = 0; i < map.arrBuildings.Length; i++)
-            {
+            {//buildings do their actions
                 string buildingType = map.arrBuildings[i].GetType().ToString();
                 string[] buildingArr = buildingType.Split('.');
                 buildingType = buildingArr[buildingArr.Length - 1];
 
-
+                //typecheck and explicit cast
                 if (buildingType == "ResourceBuilding")
                 {
 
                     ResourceBuilding building = (ResourceBuilding)map.arrBuildings[i];
                     if (building.Death() == true)
-                    { }
+                    { }//death check
                     else
                     {
                         building.ResourceManagement();
                         if (building.team== "Team1")
-                        {
+                        {//checks team and adds to their resources that have been gathered
                             t1Resources += building.resourcesGeneratedPerRound;
                         }
                         else
@@ -425,7 +426,7 @@ namespace GADE_1B_Task_1
                         if (building.team == "Team1")
                         {
                             if (t1Resources >= 60)
-                            {
+                            {//checks team and if there are enough resources to be able to spawn a unit and subtracts from the total gathered resources if it creates a unit
 
                                 Array.Resize(ref this.arrUnits, this.arrUnits.Length + 1); ;
                                 this.arrUnits[this.arrUnits.Length - 1] = building.CreateUnit();
@@ -438,7 +439,7 @@ namespace GADE_1B_Task_1
                         {
                             if (t2Resources >= 60)
                             {
-
+                                
                                 Array.Resize(ref this.arrUnits, this.arrUnits.Length + 1); ;
                                 this.arrUnits[this.arrUnits.Length - 1] = building.CreateUnit();
                                 map.arrUnits = this.arrUnits;
@@ -449,10 +450,10 @@ namespace GADE_1B_Task_1
                     }
                     
 
-                }
+                }//outputs the buildings tostring
                 buildingOutput += "\n" + map.arrBuildings[i].toString();
                 buildingOutput += "\n";
-            }
+            }//makes sure the two unit arrays dont differ
             map.arrUnits = this.arrUnits;
 
 

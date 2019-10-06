@@ -17,16 +17,16 @@ namespace GADE_1B_Task_1
         }
 
 
-
+        //Puts all the units stats into a string so it can be output to display them
         public override string ToString()
         {
             string output = "";
-            output = "Melee Unit (" + team + ")" + "\n" + "Health Points : " + this.HP + "\n" + "X-Position : " + this.xPos + "\n" + "Y-Position :" + this.yPos;
+            output = "Wizard (" + team + ")" + "\n" + "Health Points : " + this.HP + "\n" + "X-Position : " + this.xPos + "\n" + "Y-Position :" + this.yPos;
             return output;
         }
 
         public void WizardAOE(unit[] units)
-        {
+        {//checks around the unit to make the AOE effect of the wizard work and damages units within range
             for (int i = 0; i < units.Length; i++)
             {
                 if (units[i].xPos == this.xPos+1 && units[i].yPos == this.yPos+1|| units[i].xPos == this.xPos - 1 && units[i].yPos == this.yPos - 1|| units[i].xPos == this.xPos - 1 && units[i].yPos == this.yPos + 1|| units[i].xPos == this.xPos + 1 && units[i].yPos == this.yPos - 1|| units[i].xPos == this.xPos  && units[i].yPos == this.yPos + 1|| units[i].xPos == this.xPos  && units[i].yPos == this.yPos - 1|| units[i].xPos == this.xPos + 1 && units[i].yPos == this.yPos || units[i].xPos == this.xPos - 1 && units[i].yPos == this.yPos )
