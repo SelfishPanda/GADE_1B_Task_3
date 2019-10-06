@@ -44,7 +44,7 @@
             // 
             // btnStart
             // 
-            this.btnStart.Location = new System.Drawing.Point(56, 443);
+            this.btnStart.Location = new System.Drawing.Point(453, 443);
             this.btnStart.Name = "btnStart";
             this.btnStart.Size = new System.Drawing.Size(75, 23);
             this.btnStart.TabIndex = 0;
@@ -54,7 +54,7 @@
             // 
             // btnPause
             // 
-            this.btnPause.Location = new System.Drawing.Point(177, 443);
+            this.btnPause.Location = new System.Drawing.Point(583, 443);
             this.btnPause.Name = "btnPause";
             this.btnPause.Size = new System.Drawing.Size(75, 23);
             this.btnPause.TabIndex = 1;
@@ -96,7 +96,7 @@
             // 
             // btnSave
             // 
-            this.btnSave.Location = new System.Drawing.Point(56, 494);
+            this.btnSave.Location = new System.Drawing.Point(453, 494);
             this.btnSave.Name = "btnSave";
             this.btnSave.Size = new System.Drawing.Size(75, 23);
             this.btnSave.TabIndex = 5;
@@ -106,7 +106,7 @@
             // 
             // btnLoad
             // 
-            this.btnLoad.Location = new System.Drawing.Point(177, 494);
+            this.btnLoad.Location = new System.Drawing.Point(583, 494);
             this.btnLoad.Name = "btnLoad";
             this.btnLoad.Size = new System.Drawing.Size(75, 23);
             this.btnLoad.TabIndex = 6;
@@ -144,7 +144,7 @@
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(1178, 568);
+            this.ClientSize = new System.Drawing.Size(1178, 598);
             this.Controls.Add(this.label2);
             this.Controls.Add(this.label1);
             this.Controls.Add(this.rtxtBuildingInfo);

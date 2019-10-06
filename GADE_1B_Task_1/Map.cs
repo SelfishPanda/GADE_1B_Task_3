@@ -5,22 +5,28 @@ namespace GADE_1B_Task_1
     class Map
     {
         //CLASS VARIABLES
-        public char[,] arrMap = new char[20, 20];
+        
         public unit[] arrUnits;
         public Building[] arrBuildings;
+        public char[,] arrMap ;
 
         int sumUnits;
         int sumBuildings;
 
         //CLASS CONSTRUCTORS
-        public Map(int _sumUnits, int _sumBuildings)
+        public Map(int _sumUnits, int _sumBuildings, int _mapX,int _mapY)
         {
             sumUnits = _sumUnits;
-            sumBuildings = _sumBuildings;
+            sumBuildings = _sumBuildings;          
+            char[,] ArrMap = new char[_mapX, _mapY];
+            arrMap = ArrMap;
         }
 
-        //CLASS METHODS
-        public void RandomBattlefield()
+        
+        
+
+    //CLASS METHODS
+    public void RandomBattlefield()
         {
             int randomX, randomY;
             int random;
@@ -31,9 +37,9 @@ namespace GADE_1B_Task_1
             arrBuildings = new Building[sumBuildings];
             Random rnd = new Random();
 
-            for (int i = 0; i < 20; i++)
+            for (int i = 0; i < arrMap.GetLength(0); i++)
             {
-                for (int k = 0; k < 20; k++)
+                for (int k = 0; k < arrMap.GetLength(1); k++)
                 {
                     arrMap[i, k] = ',';
 
@@ -45,8 +51,8 @@ namespace GADE_1B_Task_1
             {
 
 
-                randomX = rnd.Next(0, 20);
-                randomY = rnd.Next(0, 20);
+                randomX = rnd.Next(0, arrMap.GetLength(0));
+                randomY = rnd.Next(0, arrMap.GetLength(1));
 
                 
                 random = rnd.Next(1, 5);
@@ -54,8 +60,8 @@ namespace GADE_1B_Task_1
                 while (arrMap[randomX, randomY] == 'x' || arrMap[randomX, randomY] == 'X' || arrMap[randomX, randomY] == 'o' || arrMap[randomX, randomY] == 'O')
                 {
 
-                    randomX = rnd.Next(0, 20);
-                    randomY = rnd.Next(0, 20);
+                    randomX = rnd.Next(0, arrMap.GetLength(0));
+                    randomY = rnd.Next(0, arrMap.GetLength(1));
 
                 }
 
@@ -91,14 +97,14 @@ namespace GADE_1B_Task_1
             for (int k = 0; k < sumBuildings; k++)
             {
 
-                randomX = rnd.Next(0, 20);
-                randomY = rnd.Next(0, 20);
+                randomX = rnd.Next(0, arrMap.GetLength(0));
+                randomY = rnd.Next(0, arrMap.GetLength(1));
 
                 while (arrMap[randomX, randomY] == 'x' || arrMap[randomX, randomY] == 'X' || arrMap[randomX, randomY] == 'o' || arrMap[randomX, randomY] == 'O')
                 {
 
-                    randomX = rnd.Next(0, 20);
-                    randomY = rnd.Next(0, 20);
+                    randomX = rnd.Next(0, arrMap.GetLength(0));
+                    randomY = rnd.Next(0, arrMap.GetLength(1));
 
                 }
 
@@ -168,9 +174,9 @@ namespace GADE_1B_Task_1
             string mapString;
             mapString = " ";
 
-            for (int i = 0; i < 20; i++)
+            for (int i = 0; i < arrMap.GetLength(0); i++)
             {
-                for (int k = 0; k < 20; k++)
+                for (int k = 0; k < arrMap.GetLength(1); k++)
                 {
                     mapString = mapString + arrMap[i, k];
                 }

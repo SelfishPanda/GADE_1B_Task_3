@@ -16,7 +16,7 @@ namespace GADE_1B_Task_1
 
         public GameEngine()
         {
-            map = new Map(2,4);
+            map = new Map(2,4,30,30);
            
             this.arrUnits = map.arrUnits;
                 gameRounds = 0;
@@ -178,7 +178,7 @@ namespace GADE_1B_Task_1
             }
 
             buildingOutput = " ";
-
+            
             for (int i = 0; i < map.arrBuildings.Length; i++)
             {
                 string buildingType = map.arrBuildings[i].GetType().ToString();
