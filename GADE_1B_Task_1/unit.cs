@@ -186,8 +186,69 @@ namespace GADE_1B_Task_1
         }
         //
         public abstract string ToString();
-        
-           
+
+        public virtual Building ClosestUnit(Building[] buildings)
+        {
+            int xDist, yDist, totalDist, closestDist, checkValue;
+            Building closestBuilding;
+            closestDist = 999;
+            closestBuilding = buildings[1];
+
+            for (int i = 0; i < buildings.Length; i++)
+            {
+
+                if (!buildings[i].Death() && this.team != buildings[i].team)
+                {
+                   
+                        xDist = Math.Abs(this.xPos - buildings[i].xPos);
+                        yDist = Math.Abs(this.yPos - buildings[i].yPos);
+                        totalDist = xDist + yDist;
+
+                        if (totalDist < closestDist)
+                        {
+                            closestDist = totalDist;
+                            closestBuilding = buildings[i];
+                            checkValue = 42;
+                        }
+                    
+                }
+
+            }
+            return closestBuilding;
+        }
+
+        public virtual void AttackRange(Building Enemy)
+        {
+            int totalDist;
+
+
+            totalDist = Math.Abs(this.xPos - Enemy.xPos) + Math.Abs(this.yPos - Enemy.yPos);
+            if (totalDist <= this.attackRange)
+            {
+                this.isAttacking = true;
+            }
+            else
+            {
+                this.isAttacking = false;
+            }
+        }
+
+        public virtual void Combat(Building Enemy)
+        {
+            if (Enemy.Death())
+            {
+
+            }
+            else if (isAttacking == true)
+            {
+
+
+                Enemy.HP = Enemy.HP - this.attack;
+
+            }
+        }
+
+
     }
 
 

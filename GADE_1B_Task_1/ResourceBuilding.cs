@@ -2,12 +2,7 @@
 
 class ResourceBuilding : Building
 {
-    public int XPos { get { return base.xPos; } set { base.xPos = value; } }
-    public int YPos { get { return base.yPos; } set { base.yPos = value; } }
-    public int hP { get { return base.HP; } set { base.HP = value; } }
-    public int MaxHP { get { return base.maxHP; } }
-    public string Team { get { return base.team; } }
-    public char Symbol { get { return base.symbol; } }
+   
 
     public string resourceType { get; }
     public int resourcesGenerated { get; set; }
@@ -31,6 +26,7 @@ class ResourceBuilding : Building
         if (HP <= 0)
         {
             death = true;
+            HP = 0;
         }
 
         return death;

@@ -8,12 +8,7 @@ namespace GADE_1B_Task_1
 {
     class FactoryBuilding : Building
     {
-        public int XPos { get { return base.xPos; } set { base.xPos = value; } }
-        public int YPos { get { return base.yPos; } set { base.yPos = value; } }
-        public int hP { get { return base.HP; } set { base.HP = value; } }
-        public int MaxHP { get { return base.maxHP; } }
-        public string Team { get { return base.team; } }
-        public char Symbol { get { return base.symbol; } }
+       
 
         public string unitToProduce { get;  }
         public int productionSpeed { get;}
@@ -37,6 +32,7 @@ namespace GADE_1B_Task_1
             if (HP<=0)
             {
                 death = true;
+                HP = 0;
             }
 
             return death;

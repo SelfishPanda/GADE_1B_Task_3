@@ -13,6 +13,7 @@ namespace GADE_1B_Task_1
         public Map map ;
         public string OutputString, buildingOutput;
         Form1 form = new Form1();
+        bool buildingcloser = false;
 
         public GameEngine()
         {
@@ -82,6 +83,62 @@ namespace GADE_1B_Task_1
             }              	
         }
 
+        public string Direction(unit Main, Building Enemy)
+        {
+            string ReturnVal;
+            ReturnVal = " ";
+
+
+
+            int xTotal, yTotal;
+            string xDirection, yDirection;
+            xTotal = 0;
+            yTotal = 0;
+            xDirection = "";
+            yDirection = "";
+
+            xTotal = Main.xPos - Enemy.xPos;
+            yTotal = Main.yPos - Enemy.yPos;
+
+
+
+            if (xTotal > 0)
+            {
+                xDirection = "left";
+            }
+            else if (xTotal < 0)
+            {
+                xDirection = "right";
+            }
+
+
+
+            if (yTotal < 0)
+            {
+                yDirection = "down";
+            }
+            else if (yTotal > 0)
+            {
+                yDirection = "up";
+            }
+
+            xTotal = Math.Abs(Main.xPos - Enemy.xPos);
+            yTotal = Math.Abs(Main.yPos - Enemy.yPos);
+
+            if (xTotal >= yTotal && xTotal > 0)
+            {
+                ReturnVal = xDirection;
+                return xDirection;
+
+            }
+            else
+            {
+                ReturnVal = yDirection;
+                return yDirection;
+
+            }
+        }
+
 
 
 
@@ -100,26 +157,99 @@ namespace GADE_1B_Task_1
             OutputString = "";
             for (int i = 0; i < this.arrUnits.Length; i++)
             {
-               
 
-               
-                   
 
-                    death = this.arrUnits[i].Death();
-                    if (death == true)
-                    { arrUnits[i].HP = 0; }
+
+
+
+                death = this.arrUnits[i].Death();
+                if (death == true)
+                { arrUnits[i].HP = 0; }
+                else
+                {
+
+                    unit closestunit = this.arrUnits[i].ClosestUnit(arrUnits);
+                    Building closestBuilding = this.arrUnits[i].ClosestUnit(map.arrBuildings);
+
+
+
+                    int xDistb = Math.Abs(this.arrUnits[i].xPos - closestBuilding.xPos);
+                    int yDistb = Math.Abs(this.arrUnits[i].yPos - closestBuilding.yPos);
+                    int totalDistb = xDistb + yDistb;
+
+                    int xDistu = Math.Abs(this.arrUnits[i].xPos - closestunit.xPos);
+                    int yDistu = Math.Abs(this.arrUnits[i].yPos - closestunit.yPos);
+                    int totalDistu = xDistu + yDistu;
+
+
+
+
+
+
+                    if (totalDistb < totalDistu && closestBuilding.hP > 0)
+                    {
+
+
+                        this.arrUnits[i].AttackRange(closestBuilding);
+                        if (this.arrUnits[i].HP <= (this.arrUnits[i].maxHP * 0.25))
+                        {
+                            string randomDirection;
+                            int random;
+
+                            random = rnd.Next(1, 5);
+
+                            if (random == 1)
+                            {
+                                randomDirection = "left";
+                            }
+                            else if (random == 2)
+                            {
+                                randomDirection = "right";
+                            }
+                            else if (random == 3)
+                            {
+                                randomDirection = "up";
+                            }
+                            else
+                            {
+                                randomDirection = "down";
+                            }
+
+                            this.arrUnits[i].Move(randomDirection);
+
+                            this.arrUnits[i].HP += 2;
+                        }
+                        else
+                        {
+
+
+                            if (this.arrUnits[i].isAttacking == true)
+                            {
+                                this.arrUnits[i].Combat(closestBuilding);
+                            }
+                            else
+                            {
+                                int oldX, oldY;
+                                oldX = this.arrUnits[i].xPos;
+                                oldY = this.arrUnits[i].yPos;
+                                direction = Direction(this.arrUnits[i], closestBuilding);
+                                this.arrUnits[i].Move(direction);
+                                map.MapUpdate(this.arrUnits[i], oldX, oldY);
+
+                            }
+                        }
+                    }
                     else
                     {
 
-                        unit closestunit;
-                        closestunit = this.arrUnits[i].ClosestUnit(arrUnits);
+
                         if (this.arrUnits[i] == closestunit)
                         { }
                         else
                         {
 
-                        this.arrUnits[i].AttackRange(closestunit);
-                            if (this.arrUnits[i].HP<= (this.arrUnits[i].maxHP*0.25))
+                            this.arrUnits[i].AttackRange(closestunit);
+                            if (this.arrUnits[i].HP <= (this.arrUnits[i].maxHP * 0.25))
                             {
                                 string randomDirection;
                                 int random;
@@ -143,9 +273,9 @@ namespace GADE_1B_Task_1
                                     randomDirection = "down";
                                 }
 
-                            this.arrUnits[i].Move(randomDirection);
+                                this.arrUnits[i].Move(randomDirection);
 
-                            this.arrUnits[i].HP += 2;
+                                this.arrUnits[i].HP += 2;
                             }
                             else
                             {
@@ -153,7 +283,7 @@ namespace GADE_1B_Task_1
 
                                 if (this.arrUnits[i].isAttacking == true)
                                 {
-                                this.arrUnits[i].Combat(closestunit);
+                                    this.arrUnits[i].Combat(closestunit);
                                 }
                                 else
                                 {
@@ -161,14 +291,18 @@ namespace GADE_1B_Task_1
                                     oldX = this.arrUnits[i].xPos;
                                     oldY = this.arrUnits[i].yPos;
                                     direction = Direction(this.arrUnits[i], closestunit);
-                                this.arrUnits[i].Move(direction);
-                                    map.MapUpdate(this.arrUnits[i], oldX,oldY);
-                                    
+                                    this.arrUnits[i].Move(direction);
+                                    map.MapUpdate(this.arrUnits[i], oldX, oldY);
+
                                 }
                             }
-
                         }
                     }
+
+                }
+            
+                    
+                
                     OutputString += "\n" + this.arrUnits[i].ToString();
                 
                 
