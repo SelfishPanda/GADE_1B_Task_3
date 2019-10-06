@@ -143,7 +143,7 @@ namespace GADE_1B_Task_1
                         yDist = Math.Abs(this.yPos - units[i].yPos);
                         totalDist = xDist + yDist;
 
-                        if (totalDist < closestDist)
+                        if (totalDist <= closestDist)
                         {
                             closestDist = totalDist;
                             closestUnit = units[i];

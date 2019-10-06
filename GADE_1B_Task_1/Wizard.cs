@@ -39,5 +39,60 @@ namespace GADE_1B_Task_1
                 }
             }
         }
+
+        public virtual unit ClosestUnit(unit[] units)
+        {//overloads closestunit method so wizards cant attack eachother and hence wont move to other wizards
+            int xDist, yDist, totalDist, closestDist, checkValue;
+            unit closestUnit, thisUnit;
+            closestDist = 999;
+            closestUnit = units[1];
+            checkValue = 69;
+            thisUnit = units[1];
+
+            for (int i = 0; i < units.Length; i++)
+            {
+
+                if (!units[i].Death() && units[i].unitName != "Wizard")
+                {
+                    if (this.team == units[i].team)
+                    {
+
+
+                    }
+                    else if (this.xPos == units[i].xPos && this.yPos == units[i].yPos)
+                    {
+
+                        thisUnit = units[i];
+
+                    }
+                    else
+                    {
+                        xDist = Math.Abs(this.xPos - units[i].xPos);
+                        yDist = Math.Abs(this.yPos - units[i].yPos);
+                        totalDist = xDist + yDist;
+
+                        if (totalDist <= closestDist)
+                        {
+                            closestDist = totalDist;
+                            closestUnit = units[i];
+                            checkValue = 42;
+                        }
+                    }
+                }
+
+            }
+
+            if (checkValue == 69)
+            {
+                return thisUnit;
+            }
+            else
+            {
+                return closestUnit;
+            }
+
+
+
+        }
     }
 }
