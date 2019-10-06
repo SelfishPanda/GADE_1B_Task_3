@@ -189,7 +189,7 @@ namespace GADE_1B_Task_1
 
         public virtual Building ClosestUnit(Building[] buildings)
         {
-            int xDist, yDist, totalDist, closestDist, checkValue;
+            int xDist, yDist, totalDist, closestDist;
             Building closestBuilding;
             closestDist = 999;
             closestBuilding = buildings[1];
@@ -208,7 +208,7 @@ namespace GADE_1B_Task_1
                         {
                             closestDist = totalDist;
                             closestBuilding = buildings[i];
-                            checkValue = 42;
+                            
                         }
                     
                 }

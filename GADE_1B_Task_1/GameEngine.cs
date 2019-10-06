@@ -13,7 +13,7 @@ namespace GADE_1B_Task_1
         public Map map ;
         public string OutputString, buildingOutput;
         Form1 form = new Form1();
-        bool buildingcloser = false;
+        
 
 
         public GameEngine()

@@ -97,7 +97,7 @@ namespace GADE_1B_Task_1
                 }
                 else
                 {
-                    Wizard unit = new Wizard("Wizard", randomX, randomY, 200, 1, 9, 3, "neutral", 'o', false);
+                    Wizard unit = new Wizard("Wizard", randomX, randomY, 200, 1, 9, 2, "neutral", 'W', false);
                     arrMap[unit.xPos, unit.yPos] = unit.symbol;
                     arrUnits[i] = unit;
                 }
