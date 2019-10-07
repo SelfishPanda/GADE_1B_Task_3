@@ -12,18 +12,21 @@ namespace GADE_1B_Task_1
 
         int sumUnits;
         int sumBuildings;
-        
+        public readonly int MAPX;
+        public readonly int MAPY;
+
         //CLASS CONSTRUCTORS
         public Map(int _sumUnits, int _sumBuildings, int _mapX,int _mapY)
         {
             sumUnits = _sumUnits;
             sumBuildings = _sumBuildings;          
             char[,] ArrMap = new char[_mapX, _mapY];
-           
+            MAPX = _mapX;
+            MAPY = _mapY;
             arrMap = ArrMap;
         }
        
-       
+
 
 
         //CLASS METHODS
